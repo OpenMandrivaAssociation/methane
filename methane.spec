@@ -1,6 +1,6 @@
 %define	name	methane
-%define	version	1.4.6
-%define	release	%mkrel 8
+%define	version	1.4.7
+%define	release	%mkrel 3
 %define	Summary	Super Methane Brothers
 
 Name:		%{name}
@@ -11,19 +11,16 @@ Source0:	http://www.methane.fsnet.co.uk/%{name}-%{version}.tar.bz2
 Source11:	%{name}.16.png
 Source12:	%{name}.32.png
 Source13:	%{name}.48.png
-Patch0:		methane-1.4.4-score.patch
-Patch1:		methane-1.4.6-deps-mkdir-p.patch
+Patch0:		methane-1.4.7-score.patch
+Patch1:		methane-1.4.7-deps-mkdir-p.patch
 
-URL:		http://www.methane.fsnet.co.uk/index.html
+URL:		http://methane.sourceforge.net/
 License:	GPL
 Group:		Games/Arcade
 BuildRoot:	 %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	zlib-devel libhermes-devel libmikmod-devel
-BuildRequires:	clanlib0.6-devel >= 0.6.5 
-# (gc) needed because of binary incompatibility of datafiles between versions of clanlib
-Requires:	clanlib0.6 = 0.6.5
-# Author: rombust@postmaster.co.uk
-Conflicts:	methane_new
+BuildRequires:	clanlib0.7-devel >= 0.7.8
+Obsoletes:	methane_new
 
 %description
 A bubble bobble like arcade game.
@@ -40,20 +37,19 @@ METHANE BROTHERS IS STILL A COMMERCIAL GAME IT'S LICENCE HAS NOT CHANGED.
 
 %build
 cd source/linux
-export CXXFLAGS="$RPM_OPT_FLAGS"
+export CXXFLAGS="%{optflags}"
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT%{_gamesbindir}
-install -m755 source/linux/%{name} -D $RPM_BUILD_ROOT%{_gamesbindir}/%{name}
+rm -rf %{buildroot}
+install -m755 source/linux/%{name} -D %{buildroot}%{_gamesbindir}/%{name}
 
-install -m644 %{SOURCE11} -D $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
-install -m644 %{SOURCE12} -D $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png
-install -m644 %{SOURCE13} -D $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
+install -m644 %{SOURCE11} -D %{buildroot}%{_miconsdir}/%{name}.png
+install -m644 %{SOURCE12} -D %{buildroot}%{_iconsdir}/%{name}.png
+install -m644 %{SOURCE13} -D %{buildroot}%{_liconsdir}/%{name}.png
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
+install -d %{buildroot}%{_datadir}/applications
+cat <<EOF > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop
 [Desktop Entry]
 Encoding=UTF-8
 Name=%{Summary}
@@ -67,12 +63,12 @@ EOF
 
 chmod a+rx docs
 
-mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/games
-touch $RPM_BUILD_ROOT%{_localstatedir}/games/%{name}scores
-chmod a+w $RPM_BUILD_ROOT%{_localstatedir}/games/%{name}scores
+mkdir -p %{buildroot}%{_localstatedir}/games
+touch %{buildroot}%{_localstatedir}/games/%{name}scores
+chmod a+w %{buildroot}%{_localstatedir}/games/%{name}scores
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %post
 %{update_menus}
