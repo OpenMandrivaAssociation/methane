@@ -51,7 +51,6 @@ install -m644 %{SOURCE13} -D %{buildroot}%{_liconsdir}/%{name}.png
 install -d %{buildroot}%{_datadir}/applications
 cat <<EOF > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop
 [Desktop Entry]
-Encoding=UTF-8
 Name=%{Summary}
 Comment=A bubble bobble like arcade game
 Exec=soundwrapper %{_gamesbindir}/%{name}
