@@ -1,13 +1,13 @@
 %define	name	methane
-%define	version	1.4.7
-%define	release	%mkrel 3
+%define	version	1.4.8
+%define	release	%mkrel 1
 %define	Summary	Super Methane Brothers
 
 Name:		%{name}
 Summary:	%{Summary}
 Version:	%{version}
 Release:	%{release}
-Source0:	http://www.methane.fsnet.co.uk/%{name}-%{version}.tar.bz2
+Source0:	http://www.methane.fsnet.co.uk/%{name}-%{version}.tgz
 Source11:	%{name}.16.png
 Source12:	%{name}.32.png
 Source13:	%{name}.48.png
@@ -19,7 +19,7 @@ License:	GPL
 Group:		Games/Arcade
 BuildRoot:	 %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	zlib-devel libhermes-devel libmikmod-devel
-BuildRequires:	clanlib0.7-devel >= 0.7.8
+BuildRequires:	clanlib0.8-devel
 Obsoletes:	methane_new
 
 %description
