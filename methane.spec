@@ -17,7 +17,6 @@ Patch1:		methane-1.4.7-deps-mkdir-p.patch
 URL:		http://methane.sourceforge.net/
 License:	GPL
 Group:		Games/Arcade
-BuildRoot:	 %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	zlib-devel libhermes-devel libmikmod-devel
 BuildRequires:	clanlib0.8-devel
 Obsoletes:	methane_new
