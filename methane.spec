@@ -62,19 +62,19 @@ EOF
 
 chmod a+rx docs
 
-mkdir -p %{buildroot}%{_localstatedir}/games
-touch %{buildroot}%{_localstatedir}/games/%{name}scores
-chmod a+w %{buildroot}%{_localstatedir}/games/%{name}scores
+mkdir -p %{buildroot}%{_localstatedir}/lib/games
+touch %{buildroot}%{_localstatedir}/lib/games/%{name}scores
+chmod a+w %{buildroot}%{_localstatedir}/lib/games/%{name}scores
 
 %clean
 rm -rf %{buildroot}
 
 %post
 %{update_menus}
-if [ ! -f %{_localstatedir}/games/%{name}scores ]; then
-		touch %{_localstatedir}/games/%{name}scores
-		chown games.games %{_localstatedir}/games/%{name}scores
-		chmod 664 %{_localstatedir}/games/%{name}scores
+if [ ! -f %{_localstatedir}/lib/games/%{name}scores ]; then
+		touch %{_localstatedir}/lib/games/%{name}scores
+		chown games.games %{_localstatedir}/lib/games/%{name}scores
+		chmod 664 %{_localstatedir}/lib/games/%{name}scores
 fi		
 
 %postun
@@ -85,7 +85,7 @@ fi
 %doc authors copying readme history install todo docs/
 %defattr(-,root,root)
 %attr(2755, root, games) %{_gamesbindir}/%{name}
-%attr(664, games, games) %ghost %{_localstatedir}/games/%{name}scores
+%attr(664, games, games) %ghost %{_localstatedir}/lib/games/%{name}scores
 %{_datadir}/applications/mandriva-%{name}.desktop
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
