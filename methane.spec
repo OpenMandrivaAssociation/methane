@@ -70,15 +70,19 @@ chmod a+w %{buildroot}%{_localstatedir}/lib/games/%{name}scores
 rm -rf %{buildroot}
 
 %post
+%if %mdkversion < 200900
 %{update_menus}
+%endif
 if [ ! -f %{_localstatedir}/lib/games/%{name}scores ]; then
 		touch %{_localstatedir}/lib/games/%{name}scores
 		chown games.games %{_localstatedir}/lib/games/%{name}scores
 		chmod 664 %{_localstatedir}/lib/games/%{name}scores
 fi		
 
+%if %mdkversion < 200900
 %postun
 %{clean_menus}
+%endif
 
 %files
 %defattr(644,root,root,755)
