@@ -1,6 +1,6 @@
 %define	name	methane
 %define	version	1.4.8
-%define	release	%mkrel 3
+%define	release	%mkrel 4
 %define	Summary	Super Methane Brothers
 
 Name:		%{name}
@@ -15,7 +15,7 @@ Patch0:		methane-1.4.7-score.patch
 Patch1:		methane-1.4.7-deps-mkdir-p.patch
 
 URL:		http://methane.sourceforge.net/
-License:	GPL
+License:	GPLv2+
 Group:		Games/Arcade
 BuildRoot:	 %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	zlib-devel libhermes-devel libmikmod-devel
