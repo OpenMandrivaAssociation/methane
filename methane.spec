@@ -1,6 +1,6 @@
 %define	name	methane
 %define	version	1.4.8
-%define	release	%mkrel 5
+%define	release	%mkrel 6
 %define	Summary	Super Methane Brothers
 
 Name:		%{name}
