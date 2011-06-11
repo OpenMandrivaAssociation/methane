@@ -1,13 +1,13 @@
 %define	name	methane
-%define	version	1.4.8
-%define	release	%mkrel 6
+%define	version	1.5.1
+%define	release	%mkrel 1
 %define	Summary	Super Methane Brothers
 
 Name:		%{name}
 Summary:	%{Summary}
 Version:	%{version}
 Release:	%{release}
-Source0:	http://www.methane.fsnet.co.uk/%{name}-%{version}.tgz
+Source0:	http://downloads.sourceforge.net/methane/%{name}-%{version}.tgz
 Source11:	%{name}.16.png
 Source12:	%{name}.32.png
 Source13:	%{name}.48.png
@@ -18,8 +18,7 @@ URL:		http://methane.sourceforge.net/
 License:	GPLv2+
 Group:		Games/Arcade
 BuildRoot:	 %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	zlib-devel libhermes-devel libmikmod-devel
-BuildRequires:	clanlib0.8-devel
+BuildRequires:	clanlib2.2-devel
 Obsoletes:	methane_new
 
 %description
@@ -32,17 +31,13 @@ METHANE BROTHERS IS STILL A COMMERCIAL GAME IT'S LICENCE HAS NOT CHANGED.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1 -p1 -b .deps-mkdir-p
 
 %build
-cd source/linux
-export CXXFLAGS="%{optflags}"
-%make
+%make CXXFLAGS="%optflags %ldflags"
 
 %install
 rm -rf %{buildroot}
-install -m755 source/linux/%{name} -D %{buildroot}%{_gamesbindir}/%{name}
+install -m755 %{name} -D %{buildroot}%{_gamesbindir}/%{name}
 
 install -m644 %{SOURCE11} -D %{buildroot}%{_miconsdir}/%{name}.png
 install -m644 %{SOURCE12} -D %{buildroot}%{_iconsdir}/%{name}.png
@@ -53,11 +48,11 @@ cat <<EOF > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop
 [Desktop Entry]
 Name=%{Summary}
 Comment=A bubble bobble like arcade game
-Exec=soundwrapper %{_gamesbindir}/%{name}
+Exec=%{_gamesbindir}/%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
-Categories=Game;ArcadeGame;X-MandrivaLinux-MoreApplications-Games-Arcade;
+Categories=Game;ArcadeGame;
 EOF
 
 chmod a+rx docs
@@ -86,13 +81,10 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc authors copying readme history install todo docs/
-%defattr(-,root,root)
+%doc *.txt docs
 %attr(2755, root, games) %{_gamesbindir}/%{name}
 %attr(664, games, games) %ghost %{_localstatedir}/lib/games/%{name}scores
 %{_datadir}/applications/mandriva-%{name}.desktop
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
-
-
