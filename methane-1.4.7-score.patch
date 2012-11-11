@@ -1,0 +1,11 @@
+--- methane-1.4.7/source/linux/main.cpp~	2005-01-20 17:22:02.000000000 +0100
++++ methane-1.4.7/source/linux/main.cpp	2005-03-15 12:59:07.527404503 +0100
+@@ -84,7 +84,7 @@ public:
+ 			std::cout << "F3:Toggle Full Screen\n";
+ 			std::cout << "F9:Increase Game Speed (Lower frame rate)\n";
+ 			std::cout << "F10:Decrease Game Speed (Raise frame rate)\n";
+-			std::cout << "(High Scores written to /var/games/methanescores)\n";
++			std::cout << "(High Scores written to /var/lib/games/methanescores)\n";
+ 
+ 
+ 			// Initialize ClanLib base components

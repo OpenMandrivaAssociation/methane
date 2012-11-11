@@ -1,0 +1,31 @@
+--- methane-1.4.7/source/linux/makefile~	2005-01-20 17:22:02.000000000 +0100
++++ methane-1.4.7/source/linux/makefile	2005-03-15 13:02:02.910286682 +0100
+@@ -38,24 +38,24 @@ distclean: clean
+ # The main source code
+ MainSource/%.o : ../%.cpp
+ 	@echo "  Compiling $<..."
+-	@if [ ! -d MainSource ]; then mkdir MainSource; fi
++	@if [ ! -d MainSource ]; then mkdir -p MainSource; fi
+ 	gcc ${CXXFLAGS} ${METHANE_FLAGS} ${METHANE_SND_FLAGS} -I ../linux -c $< -o $@
+ 
+ # The main data
+ MainData/%.o : ../data/%.cpp
+ 	@echo "  Compiling $<..."
+-	@if [ ! -d MainData ]; then mkdir MainData; fi
++	@if [ ! -d MainData ]; then mkdir -p MainData; fi
+ 	gcc ${CXXFLAGS} ${METHANE_FLAGS} ${METHANE_SND_FLAGS} -I ../ -c $< -o $@
+ 
+ # The linux source code
+ MainLinux/%.o : ../linux/%.cpp
+ 	@echo "  Compiling $<..."
+-	@if [ ! -d MainLinux ]; then mkdir MainLinux; fi
++	@if [ ! -d MainLinux ]; then mkdir -p MainLinux; fi
+ 	gcc ${CXXFLAGS} ${METHANE_FLAGS} ${METHANE_SND_FLAGS} -I ../ -c $< -o $@
+ 
+ # The sound driver source code
+ MainMikMod/%.o : ../mikmod/%.cpp
+ 	@echo "  Compiling $<..."
+-	@if [ ! -d MainMikMod ]; then mkdir MainMikMod; fi
++	@if [ ! -d MainMikMod ]; then mkdir -p MainMikMod; fi
+ 	gcc ${CXXFLAGS} ${METHANE_FLAGS} ${METHANE_SND_FLAGS} -I ../ -c $< -o $@
+ 
