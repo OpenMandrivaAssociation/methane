@@ -14,7 +14,7 @@ Source13:	%{name}.48.png
 Patch0:		methane-1.4.7-score.patch
 Patch1:		methane-1.4.7-deps-mkdir-p.patch
 
-URL:		http://methane.sourceforge.net/
+URL:		https://methane.sourceforge.net/
 License:	GPLv2+
 Group:		Games/Arcade
 BuildRoot:	 %{_tmppath}/%{name}-%{version}-%{release}-buildroot
